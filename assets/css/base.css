@@ -1,0 +1,45 @@
+:root {
+    --primary-color : #EE4D2D;
+    --primary-color-rgba : rgba(238, 77, 45);
+    --white-color : #fff;
+    --black-color : #000;
+    --text-color : #333;
+    --heading-padding: 8px;
+}
+
+*{
+    box-sizing: inherit;
+}
+
+html {
+    /* default 16px ==> 62.5% = 10px */
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'roboto', Sans-serif; /* Font no under leg?*/
+    box-sizing: border-box;
+}
+
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
