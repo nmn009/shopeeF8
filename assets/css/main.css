@@ -638,10 +638,12 @@
     line-height: 1.4rem;
     padding: 1px 7px;
     position: absolute;
+    top: -4px;
+    right: -10px;
     color: var(--primary-color);
     background-color: var(--white-color);
     border-radius: 10px;
-    border-radius: 1p
+    border: 2px solid #ee4d2d;
 }
 
 .header__cart-icon {
@@ -651,4 +653,56 @@
 
 .header__cart-wrapper:hover .header__cart-list{
     display: block;
+}
+
+.header__cart-list {
+    
+}
+
+.header__cart-header{
+
+}
+
+.header__cart-list-items{
+
+}
+
+.header__cart-item{
+
+}
+
+.header__cart-item-img{
+
+}
+
+.header__cart-item-detail{
+
+}
+
+.header__cart-item-header{
+
+}
+
+.header__cart-item-name{
+
+}
+
+.header__cart-item-price{
+
+}
+
+.header__cart-multiply-sign{
+
+}
+
+.header__cart-item-quantity{
+
+}
+
+.header__cart-item-footer{
+
+}
+
+.header__cart-item-type{
+
 }
