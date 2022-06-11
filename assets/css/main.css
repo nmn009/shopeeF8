@@ -17,22 +17,28 @@
     align-items: center;
 }
 
-.header__navbar-item{
+.header__navbar-item {
     margin: 0 var(--heading-padding);
     position: relative;
     min-height: 26px;
 }
+
 
 .header__navbar-user{
     display: flex;
     align-items: center;
 }
 
+.header__navbar-user:hover .header__navbar-user-setting-list{
+    display: block;
+}
+
 .header__navbar-avatar{
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header__navbar-user-name{
@@ -52,12 +58,29 @@
     margin: 0;
     padding: 0;
     border-radius: 3px;
+    display: none;
+}
+
+.header__navbar-user-setting-list::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 32px;
+    border-width: 10px 16px;
+    border-style: solid;
+    border-color: transparent transparent var(--white-color) transparent;
 }
 
 .header__navbar-user-setting-item {
     font-size: 1.4rem;
     padding: 4px 8px;
     border-radius: 3px;
+}
+
+.header__navbar-user-setting-item a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
 }
 
 .header__navbar-user-setting-item:hover {
@@ -87,13 +110,16 @@
 .header__navbar-item-link,
 .header__navbar-icon-link {
     display: inline-flex;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--white-color);
     text-decoration: none;
     font-weight: 300;
     align-items: center;
 }
 
+.header__navbar-icon-link:nth-child(2) {
+    margin-left: 4px;
+}
 
 .header__navbar-item:hover,
 .header__navbar-item-link:hover,
@@ -123,9 +149,10 @@
 
 /* Header QR code */
 .header__qr {
+    position: absolute;
+    z-index: 1;
     background-color: var(--white-color);
     width: 186px;
-    position: absolute;
     left: 0;
     top: 120%;
     padding: 8px;
@@ -170,18 +197,19 @@
 /* Notification CODE */
 .header__notify{
     position: absolute;
+    z-index: 1;
     top: 118%;
     right: 0;
     width: 404px;
+    border-radius: 2px;
     border: 1px solid #D3D3D3;
     background-color: var(--white-color);
     cursor: default;
-    transform-origin: calc(100% - 20px) top;
+    transform-origin: calc(100% - 32px) top;
     animation: headerNotifyGrowth ease-in 0.2s;
     -webkit-animation:  headerNotifyGrowth ease-in 0.2s;
     will-change: opacity, transform;
     display: none;
-    z-index: 99;
 }
 
 .header__notify::before {
@@ -709,7 +737,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    max-height: 198px;
+    max-height: 206px;
     overflow-y: scroll;
 }
 
@@ -794,4 +822,100 @@
 
 .header__cart-btn:hover {
     background-color: #F05D41;
+}
+
+/* app container */
+.app__container {
+    background-color: #f5f5f5;
+}
+
+
+/* Home sort + filter */
+.category {
+    border-radius: 2px;
+    background-color: var(--white-color);
+}
+
+.category__heading {
+    color: var(--text-color);
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 0;
+}
+
+.pt-36 {
+    padding-top: 36px;
+}
+
+.category__heading-icon{
+    font-size: 1.4rem;
+    margin-right: 4px;
+    position: relative;
+    top: -1px;
+}
+
+.category-list {
+    padding: 0 0 8px 0;
+    list-style-type: none;
+    font-size: 1.6rem;
+    margin-left: 9px;
+}
+
+.category-item {
+    position: relative;
+}
+
+.category-item.category-item-active  .category-link{
+    color: var(--primary-color) !important;
+}
+
+.category-item-active .category-link::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 4px solid;
+    border-color: transparent transparent transparent var(--primary-color);
+}
+
+.category-link {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color : var(--text-color);
+    padding: 4px 16px;
+    transition: right linear 0.1s;
+    right: 0;
+}
+
+
+.category-link:hover {
+    right: -4px;
+    color: var(--primary-color);
+}
+
+.home-filter {
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    padding : 12px 22px;
+    border-radius: 2px;
+}
+
+.home-filter__page {
+    display: flex;
+    align-items: center;
+}
+
+.home-filter__label {
+    font-size: 1.4rem;
+    color : #555;
+    margin-right: 16px;
+}
+
+.home-filter__btn {
+    margin-right: 14px;
+    min-width: 90px;
 }

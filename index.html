@@ -128,9 +128,10 @@
                             <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/218805892_1630006513872501_1351028271297325566_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3zszzqaX1joAX-5cscT&tn=bIYMu_2pFW-WLVvL&_nc_ht=scontent-lax3-1.xx&oh=00_AT-tlJF6HtNnKV0jTyvud2rmmBOuNUOJN3vO8ijkL8rt7w&oe=62A823D1" alt="my avatar" class="header__navbar-avatar">
                             <span class="header__navbar-user-name">Nhat Nguyen</span>
                             <ul class="header__navbar-user-setting-list">
-                                <li class="header__navbar-user-setting-item">My account</li>
-                                <li class="header__navbar-user-setting-item">My order</li>
-                                <li class="header__navbar-user-setting-item header__navbar-user-setting-item-seperate">Log out</li>
+                                <li class="header__navbar-user-setting-item"><a href="#">My account</a></li>
+                                <li class="header__navbar-user-setting-item"><a href="#">My order</a></li>
+                                <li class="header__navbar-user-setting-item"><a href="#">My address</a></li>
+                                <li class="header__navbar-user-setting-item header__navbar-user-setting-item-seperate"><a href="#">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -309,8 +310,68 @@
             </div>
         </header>
 
-        <div class="container">
+        <div class="app__container">
+            <div class="grid">
+                <div class="grid__row pt-36">
+                    <div class="grid__col-2">
+                        <nav class="category">
+                            <h3 class="category__heading">
+                                <i class="category__heading-icon fa-solid fa-list"></i>
+                                Category
+                            </h3>
+                            <ul class="category-list">
+                                <li class="category-item category-item-active">
+                                    <a href="#" class="category-link">Shoe</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">Shirt</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">Pant</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="category-link">Hat</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="grid__col-10">
+                        <div class="home-filter">
+                            <span class="home-filter__label">
+                                Sort by
+                            </span>
+                            <button class="home-filter__btn btn">Popular</button>
+                            <button class="home-filter__btn btn btn--primary">Newest</button>
+                            <button class="home-filter__btn btn">On sale</button>
 
+                            <div class="select-input">
+                                <span class="select-input__icon select-input__label">Price</span>
+                                <i class="fa-solid fa-caret-down"></i>
+                                <ul class="select-input__list">
+                                    <li class="select-input__item">From low to high</li>
+                                    <li class="select-input__item">From high to low</li>
+                                </ul>
+                            </div>
+
+                            <div class="home-filter__page">
+                                <span class="home-filter__page-num">
+                                    <span class="home-filter__page-current">1</span>
+                                    /
+                                    14
+                                </span>
+                                <div class="home-filter__page-control">
+                                    <a href="#" class="home-filter__page-btn">
+                                        <i class="fa-solid fa-caret-left"></i>
+                                    </a>
+                                    <a href="#" class="home-filter__page-btn">
+                                        <i class="fa-solid fa-caret-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer class="footer">
