@@ -119,12 +119,12 @@
                                 Help
                             </a>
                         </li>
-                        <!-- <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate"
+                        <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate"
                             id="signUp">
                             Sign up
                         </li>
-                        <li class="header__navbar-item header__navbar-item--strong" id="signIn">Sign In</li> -->
-                        <li class="header__navbar-item header__navbar-user">
+                        <li class="header__navbar-item header__navbar-item--strong" id="signIn">Sign In</li>
+                        <!-- <li class="header__navbar-item header__navbar-user">
                             <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/218805892_1630006513872501_1351028271297325566_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3zszzqaX1joAX-5cscT&tn=bIYMu_2pFW-WLVvL&_nc_ht=scontent-lax3-1.xx&oh=00_AT-tlJF6HtNnKV0jTyvud2rmmBOuNUOJN3vO8ijkL8rt7w&oe=62A823D1" alt="my avatar" class="header__navbar-avatar">
                             <span class="header__navbar-user-name">Nhat Nguyen</span>
                             <ul class="header__navbar-user-setting-list">
@@ -133,7 +133,7 @@
                                 <li class="header__navbar-user-setting-item"><a href="#">My address</a></li>
                                 <li class="header__navbar-user-setting-item header__navbar-user-setting-item-seperate"><a href="#">Log out</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
 
@@ -997,7 +997,7 @@
         <div class="modal__overlay"></div>
         <div class="modal__body" id="signUpModal">
             <!-- Register Form -->
-            <div class="auth-form__container">
+            <form class="auth-form__container" action="" method="POST" id="signUp-form">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Sign up</h3>
                     <span class="auth-form__switch-btn">Sign in</span>
@@ -1005,15 +1005,18 @@
 
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input type="text" placeholder="Enter your email" class="auth-form__input">
+                        <input type="text" placeholder="Enter your email" class="auth-form__input" id="signUpEmail" name="signUpEmail">
+                        <span class="auth-form__message"></span>
                     </div>
 
                     <div class="auth-form__group">
-                        <input type="password" placeholder="Enter your password" class="auth-form__input">
+                        <input type="password" placeholder="Enter your password" class="auth-form__input" id="signUpPassword" name="signUpPassword">
+                        <span class="auth-form__message"></span>
                     </div>
 
                     <div class="auth-form__group">
-                        <input type="password" placeholder="Re-enter your password" class="auth-form__input">
+                        <input type="password" placeholder="Re-enter your password" class="auth-form__input" id="signUpConfirmPassword" name="signUpConfirmPassword">
+                        <span class="auth-form__message"></span>
                     </div>
                 </div>
 
@@ -1028,7 +1031,7 @@
                     <button class="btn auth-form__controls-back btn--normal cancel">GO BACK</button>
                     <button class="btn btn--primary">SIGN UP</button>
                 </div>
-            </div>
+            </form>
 
             <div class="auth-form__socials">
                 <a href="#" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
@@ -1043,7 +1046,7 @@
         </div>
         <div class="modal__body" id="logInModal">
             <!-- Login form -->
-            <div class="auth-form__container">
+            <form class="auth-form__container" action="" method="POST" id="logIn-form">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Sign in</h3>
                     <span class="auth-form__switch-btn">Sign up</span>
@@ -1052,10 +1055,12 @@
                 <div class="auth-form__form">
                     <div class="auth-form__group">
                         <input type="text" placeholder="Enter your email" class="auth-form__input">
+                        <span class="auth-form__message"></span>
                     </div>
 
                     <div class="auth-form__group">
                         <input type="password" placeholder="Enter your password" class="auth-form__input">
+                        <span class="auth-form__message"></span>
                     </div>
                 </div>
 
@@ -1069,7 +1074,7 @@
                     <button class="btn auth-form__controls-back btn--normal cancel">GO BACK</button>
                     <button class="btn btn--primary">LOG IN</button>
                 </div>
-            </div>
+            </form>
 
             <div class="auth-form__socials">
                 <a href="#" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
@@ -1084,6 +1089,26 @@
         </div>
     </div>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/validator.js"></script>
+    <script>
+        // Output desired
+        Validator({
+            form: '#signUp-form',
+            errorSelector: '.auth-form__message',
+            rules: [
+                Validator.isRequired('#signUpEmail'),
+                Validator.isEmail('#signUpEmail'),
+                Validator.minLength('#signUpPassword', 6),
+                Validator.isConfirm('#signUpConfirmPassword', function() {
+                    return document.querySelector('#signUp-form #signUpPassword').value;
+                }, "The re-enter password is not correct")
+            ],
+            onSubmit : function (data) {
+                // Call API to signup/ login
+                console.log(data);
+            }
+        });
+    </script>
 </body>
 
 </html>

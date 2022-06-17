@@ -382,6 +382,11 @@
 
 }
 
+.auth-form__input.form-invalid {
+    border-width: 2px;
+    border-color: var(--primary-color);
+}
+
 .auth-form__input {
     width: 100%;
     height: 40px;
@@ -391,6 +396,10 @@
     border: 1px solid var(--border-color);
     border-radius: 2px;
     outline: none;
+}
+
+.auth-form__message {
+    color: var(--primary-color);
 }
 
 .auth-form__input:focus{
