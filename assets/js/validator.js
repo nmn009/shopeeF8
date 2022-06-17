@@ -2,9 +2,22 @@
 function Validator(options) {
     const formElement = document.querySelector(options.form);
     selectorRules = {};
+
+    function getParent(element, selector) {
+        while (element.parentElement) {
+            console.log(element.parentElement);
+            if (element.parentElement.matches(selector)) {
+                return element.parentElement;
+            } else {
+                element = element.parentElement;
+            }
+        }
+    }
+
     // validate the input
     function validate(inputElement, rule) {
-        const parentElement = inputElement.parentElement;
+        const parentElement = getParent(inputElement, options.formGroupSelector);
+        // const parentElement = inputElement.parentElement;
         let rules = selectorRules[rule.selector];
         console.log(rules);
         let errMsg = "" ;
@@ -40,10 +53,32 @@ function Validator(options) {
                 if (typeof options.onSubmit === 'function') {
                     let enableInputs = formElement.querySelectorAll('[name]');
                     let formValues = Array.from(enableInputs).reduce(function(values, input) {
-                        return (values[input.name] = input.value) && values;
+                        switch (input.type) {
+                            case 'checkbox':
+                                if (!input.matches(':checked')) {
+                                    values[input.name] = '';
+                                    return values;
+                                }
+                                if (!Array.isArray(values[input.name])) {
+                                    values[input.name] = [];
+                                }
+                                values[input.name].push(input.value);
+                                break;
+                            case 'radio':
+                                if (input.matches(':checked')) {
+                                (values[input.name] = input.value);
+                                }
+                                break;
+                            case 'file':
+                                values[input.name] = input.files;
+                                break;
+
+                            default:
+                                (values[input.name] = input.value);
+                        }
+
+                        return values;
                     }, {});
-
-
                     options.onSubmit(formValues)
                 }
                 // submit with default html
@@ -63,15 +98,20 @@ function Validator(options) {
                 selectorRules[rule.selector] = [rule.test];
             }
 
-            let inputElement = formElement.querySelector(rule.selector);
-            if (inputElement) {
-                inputElement.onblur = function () {
-                    validate(inputElement,rule);
+            let inputElements = formElement.querySelectorAll(rule.selector);
+            console.log(inputElements);
+            Array.from(inputElements).forEach(function(inputElement) {
+                console.log(inputElement)
+                if (inputElement) {
+                    inputElement.onblur = function () {
+                        console.log('blur')
+                        validate(inputElement,rule);
+                    }
+                    inputElement.oninput = function () {
+                        inputElement.parentElement.querySelector(options.errorSelector).innerText = '';
+                    }
                 }
-                inputElement.oninput = function () {
-                    inputElement.parentElement.querySelector(options.errorSelector).innerText = '';
-                }
-            }
+            });
         })
         
     } else {
